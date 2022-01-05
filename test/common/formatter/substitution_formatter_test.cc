@@ -2448,8 +2448,6 @@ TEST(SubstitutionFormatterTest, ParserSuccesses) {
   }
 }
 
-<<<<<<< HEAD
-=======
 TEST(SubstitutionFormatterTest, EmptyFormatParse) {
   Http::TestRequestHeaderMapImpl request_headers{{":method", "GET"}, {":path", "/"}};
   Http::TestResponseHeaderMapImpl response_headers;
@@ -2495,7 +2493,6 @@ TEST(SubstitutionFormatterTest, FormatterExtension) {
                                                   response_trailers, stream_info, body));
 }
 
->>>>>>> c5c5d4c8a7... formatter: escape percent sign in response format
 } // namespace
 } // namespace Formatter
 } // namespace Envoy

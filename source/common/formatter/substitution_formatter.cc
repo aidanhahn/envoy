@@ -300,7 +300,15 @@ std::vector<FormatterProviderPtr> SubstitutionFormatParser::parse(const std::str
         current_token = "";
       }
 
-<<<<<<< HEAD
+      // escape '%%'
+      if (format.length() > pos+1) {
+        if (format[pos+1] == '%') {
+          current_token += '%';
+          pos++;
+          continue;
+        }
+      }
+
       std::smatch m;
       const std::string search_space = format.substr(pos);
       if (!std::regex_search(search_space, m, command_w_args_regex)) {
@@ -308,21 +316,6 @@ std::vector<FormatterProviderPtr> SubstitutionFormatParser::parse(const std::str
             fmt::format("Incorrect configuration: {}. Couldn't find valid command at position {}",
                         format, pos));
       }
-=======
-    // escape '%%'
-    if (format.length() > pos+1) {
-      if (format[pos+1] == '%') {
-        current_token += '%';
-        pos++;
-        continue;
-      }
-    }
-
-    if (!current_token.empty()) {
-      formatters.emplace_back(FormatterProviderPtr{new PlainStringFormatter(current_token)});
-      current_token = "";
-    }
->>>>>>> c5c5d4c8a7... formatter: escape percent sign in response format
 
       const std::string match = m.str(0);
       const std::string token = match.substr(1, match.length() - 2);
